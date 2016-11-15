@@ -103,8 +103,20 @@ action:
     [Service]
     User=mongodb
     Group=mongodb
-    ExecStart=/usr/bin/mongod --quiet --config /etc/mongod.conf
+    ExecStart=/usr/bin/mongod --quiet --config /etc/mongo/mongod.conf
 
     [Install]
     WantedBy=multi-user.target
+
+    [Service]
+    # (file size)
+    LimitFSIZE=infinity
+    # (cpu time)
+    LimitCPU=infinity
+    # (virtual memory size)
+    LimitAS=infinity
+    # (open files)
+    LimitNOFILE=64000
+    # (processes/threads)
+    LimitNPROC=64000
 ...
